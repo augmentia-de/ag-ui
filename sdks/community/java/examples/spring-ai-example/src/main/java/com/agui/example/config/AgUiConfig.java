@@ -27,17 +27,11 @@ public class AgUiConfig {
     }
 
     @Bean
-    public SpringAIAgent agent(@Value("${spring.ai.openai.api-key}") final String apiKey) {
-        var openai = OpenAiChatModel.builder()
-            .defaultOptions(OpenAiChatOptions.builder()
-                .model("gpt-4o")
-                .build()
-            )
-            .openAiApi(OpenAiApi.builder()
-                .apiKey(apiKey)
-                .build()
-            )
-            .build();
+    public SpringAIAgent agent(
+            @Value("${spring.ai.openai.api-key}") final String apiKey,
+            @Value("${spring.ai.openai.base-url:https://api.openai.com}") final String baseUrl,
+            @Value("${spring.ai.openai.model:gpt-4o}") final String model) {
+        var openai = chatModel(apiKey, baseUrl, model);
 
         ChatMemory chatMemory = MessageWindowChatMemory.builder()
             .chatMemoryRepository(new InMemoryChatMemoryRepository())
@@ -63,8 +57,11 @@ public class AgUiConfig {
     }
 
     @Bean("AgenticChat")
-    public SpringAIAgent agenticChatAgent(@Value("${spring.ai.openai.api-key}") final String apiKey) {
-        var openai = chatModel(apiKey);
+    public SpringAIAgent agenticChatAgent(
+            @Value("${spring.ai.openai.api-key}") final String apiKey,
+            @Value("${spring.ai.openai.base-url:https://api.openai.com}") final String baseUrl,
+            @Value("${spring.ai.openai.model:gpt-4o}") final String model) {
+        var openai = chatModel(apiKey, baseUrl, model);
 
         ChatMemory chatMemory = MessageWindowChatMemory.builder()
             .chatMemoryRepository(new InMemoryChatMemoryRepository())
@@ -83,8 +80,11 @@ public class AgUiConfig {
     }
 
     @Bean("SharedState")
-    public SpringAIAgent sharedStateAgent(@Value("${spring.ai.openai.api-key}") final String apiKey) {
-        var openai = chatModel(apiKey);
+    public SpringAIAgent sharedStateAgent(
+            @Value("${spring.ai.openai.api-key}") final String apiKey,
+            @Value("${spring.ai.openai.base-url:https://api.openai.com}") final String baseUrl,
+            @Value("${spring.ai.openai.model:gpt-4o}") final String model) {
+        var openai = chatModel(apiKey, baseUrl, model);
 
         ChatMemory chatMemory = MessageWindowChatMemory.builder()
                 .chatMemoryRepository(new InMemoryChatMemoryRepository())
@@ -104,14 +104,15 @@ public class AgUiConfig {
             .build();
     }
 
-    private ChatModel chatModel(final String apiKey) {
+    private ChatModel chatModel(final String apiKey, final String baseUrl, final String model) {
         return OpenAiChatModel.builder()
             .defaultOptions(OpenAiChatOptions.builder()
-                .model("gpt-4o")
+                .model(model)
                 .build()
             )
             .openAiApi(OpenAiApi.builder()
                 .apiKey(apiKey)
+                .baseUrl(baseUrl)
                 .build()
             )
             .build();

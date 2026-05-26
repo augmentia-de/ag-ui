@@ -6,6 +6,7 @@ import com.agui.core.event.BaseEvent;
 import com.agui.core.stream.EventStream;
 import com.agui.json.ObjectMapperFactory;
 import com.agui.server.LocalAgent;
+import com.agui.server.dto.AgUiParameters;
 import com.agui.server.streamer.AgentStreamer;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 

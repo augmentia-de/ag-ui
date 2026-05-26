@@ -1,6 +1,6 @@
 package com.agui.example;
 
-import com.agui.server.spring.AgUiParameters;
+import com.agui.server.dto.AgUiParameters;
 import com.agui.server.spring.AgUiService;
 import com.agui.spring.ai.SpringAIAgent;
 import org.springframework.beans.factory.annotation.Autowired;

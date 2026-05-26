@@ -1,10 +1,11 @@
-package com.agui.server.spring;
+package com.agui.server.dto;
 
 import com.agui.core.context.Context;
 import com.agui.core.message.BaseMessage;
 import com.agui.core.message.UserMessage;
 import com.agui.core.state.State;
 import com.agui.core.tool.Tool;
+import com.agui.server.dto.AgUiParameters;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
