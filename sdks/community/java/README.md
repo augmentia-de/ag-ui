@@ -26,9 +26,16 @@
 - [Json](./utils/json/README.md) -> Json utilities
 
 ### Servers
-- [Spring](./servers/spring/README.md) -> Spring Server SSE utilities
+- [Spring](./servers/spring/README.md) -> Spring Boot server with SSE utilities
+- [Quarkus](./servers/quarkus/README.md) -> Quarkus server with SSE utilities
 
 ### Integrations
-- [Spring AI](./integrations/spring-ai/README.md) -> Spring AI server Agent
+- [Spring AI](./integrations/spring-ai/README.md) -> Spring AI integration with `SpringAIAgent`
+- [LangChain4j](./integrations/langchain4j/README.md) -> LangChain4j integration with `Langchain4jAgent`
+
+### Examples
+- [Spring AI Example](./examples/spring-ai-example/README.md) -> Spring Boot example using Spring AI
+- [LangChain4j Quarkus Example](./examples/langchain4j-quarkus-example/README.md) -> Quarkus example using LangChain4j
+- [Pure Java HTTP Example](./examples/pure-java-http-example/README.md) -> Minimal Java HTTP server using LangChain4j
 
 ## 🚀 Quick Start

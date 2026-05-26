@@ -29,12 +29,16 @@ AG-UI is an Agent User Interaction Protocol for Java that provides a framework f
 - **packages/core**: Core interfaces and models (`Agent`, `BaseMessage`, events)
 - **packages/client**: Client library for consuming agent services
 - **packages/http**: HTTP utilities and communication layer
-- **packages/server**: Server-side implementation components
+- **packages/server**: Server-side implementation components (`LocalAgent`, `AgentStreamer`, `AgUiParameters` DTO)
 - **integrations/spring-ai**: Spring AI integration with `SpringAIAgent`
-- **servers/spring**: Spring Boot server implementation
+- **integrations/langchain4j**: LangChain4j integration with `Langchain4jAgent`, `ExecutableTool`, tool mappers
+- **servers/spring**: Spring Boot server SSE utilities
+- **servers/quarkus**: Quarkus server SSE utilities (`QuarkusAgUiService`)
 - **clients/ok-http**: OkHttp client implementation
 - **utils/json**: JSON utilities with Jackson mixins
-- **examples/**: Working examples for Spring AI and LangChain4j
+- **examples/spring-ai-example**: Spring Boot example using Spring AI integration
+- **examples/langchain4j-quarkus-example**: Quarkus example using LangChain4j integration
+- **examples/pure-java-http-example**: Minimal Java HTTP server using LangChain4j integration
 
 ### Core Architecture Patterns
 
@@ -57,6 +61,7 @@ The system uses streaming events for real-time updates:
 - **SpringAIAgent**: Uses Spring AI's reactive streaming with `ChatClient` and `ToolCallback`
 - **Langchain4jAgent**: Integrates with `StreamingChatModel` and `StreamingChatResponseHandler`
 - Both agents extend `LocalAgent` base class for common functionality
+- Tools are defined as `ExecutableTool` records pairing a `ToolSpecification` with a `Function<String, String>` executor, registered via the builder's `.executableTool()` method
 
 #### Message System
 Unified message types across all integrations:
@@ -79,3 +84,4 @@ Unified message types across all integrations:
 - **JUnit 5**: Testing framework
 - **AssertJ**: Fluent assertions for tests
 - **Maven**: Build and dependency management
+- **Quarkus (SmallRye Mutiny)**: Reactive SSE streaming for Quarkus server
